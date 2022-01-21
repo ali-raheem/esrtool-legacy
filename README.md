@@ -1,5 +1,7 @@
 # esrtool v0.25.2
 
+**This is tool is archived. Try this tool instead [esrtool_rs](https://github.com/ali-raheem/esrtool_rs/)**
+
 A simple esr (un)patching tool.
 
 Fork from 0.24a esr-disc-patcher-cli v0.24
