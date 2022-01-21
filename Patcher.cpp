@@ -48,7 +48,7 @@ int CPatcher::doPatch(char* filename)
 		fread(buffer, LBA_SIZE, 1, iso);
 
 		// "NSR"
-		if(!strncmp((char *)(buffer + 1), "NSR", 3)) {
+		if(!memcmp((char *)(buffer + 1), "NSR", 3)) {
 			is_udf = 1;
 			break;
 		}
@@ -63,7 +63,7 @@ int CPatcher::doPatch(char* filename)
 	fseek(iso, 14 * LBA_SIZE, SEEK_SET);
 	fread(buffer, LBA_SIZE, 1, iso);
 
-	if(!strncmp((char *)(buffer + 25), "+NSR", 4)) {
+	if(!std::memcmp((char *)(buffer + 25), "+NSR", 4)) {
 		fclose(iso);
 		return ESR_FILE_ALREADY_PATCHED;
 	}
@@ -95,6 +95,16 @@ int CPatcher::doPatch(char* filename)
 	desc_crc_len = (unsigned short *)(buffer + 10);	
 	desc_crc = (unsigned short *)(buffer + 8);
 
+	if(*desc_crc_len > LBA_SIZE - 16) {
+	  fclose(iso);
+	  return ESR_FILE_ERROR;
+	}
+
+	if(*desc_crc_len > LBA_SIZE - 16) {
+	  fclose(iso);
+	  return ESR_FILE_ERROR;
+	}
+
 	*desc_crc = crc_itu_t(0, (buffer + 16), *desc_crc_len);
 
 	tag_checksum = 0;
@@ -122,6 +132,11 @@ int CPatcher::doPatch(char* filename)
 	desc_crc_len = (unsigned short *)(buffer + 10);	
 	desc_crc = (unsigned short *)(buffer + 8);
 
+	if(*desc_crc_len > LBA_SIZE - 16) {
+          fclose(iso);
+          return ESR_FILE_ERROR;
+    }
+	
 	*desc_crc = crc_itu_t(0, (buffer + 16), *desc_crc_len);
 
 	// Calculates new checksums
@@ -163,7 +178,7 @@ int CPatcher::doUnPatch(char* filename)
 		fread(buffer, LBA_SIZE, 1, iso);
 
 		// "NSR"
-		if(!strncmp((char *)(buffer + 1), "NSR", 3)) {
+		if(!std::memcmp((char *)(buffer + 1), "NSR", 3)) {
 			is_udf = 1;
 			break;
 		}
@@ -178,7 +193,7 @@ int CPatcher::doUnPatch(char* filename)
 	fseek(iso, 14 * LBA_SIZE, SEEK_SET);
 	fread(buffer, LBA_SIZE, 1, iso);
 
-	if(strncmp((char *)(buffer + 25), "+NSR", 4)) {
+	if(std::memcmp((char *)(buffer + 25), "+NSR", 4)) {
 		fclose(iso);
 		return ESR_FILE_NOT_PATCHED;
 	}

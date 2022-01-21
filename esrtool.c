@@ -53,6 +53,9 @@ int main(int argc, char **argv) {
       case ESR_FILE_NO_UDF_DESCRIPTOR:
         puts("ERROR!\nFile does not have UDF descriptor.");
         exit(EXIT_FAILURE);
+      case ESR_FILE_ERROR:
+        puts("ERROR!\nFile maybe corrupt.");
+        exit(EXIT_FAILURE);
       default:
         puts("ERROR!\nUnknown error.");
         exit(EXIT_FAILURE);

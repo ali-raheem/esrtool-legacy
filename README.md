@@ -1,4 +1,4 @@
-# esrtool v0.25.1
+# esrtool v0.25.2
 
 A simple esr (un)patching tool.
 
@@ -15,7 +15,6 @@ Statically linked stripped binary in /bin/
 Functionally tested on:
 
 * Windows 10 WSL
-* Debian 8.8
 
 ### Installation
 
@@ -52,7 +51,7 @@ $ make static
 * Option to not patch in place
 
 ### Changelog
-
+* 2022-01-21 Crash fix.
 * 2017-05-11 Rewrite of interface code in c. Now esrtool.
 * 2017-05-11 Added static make rules
 * 2017-05-01 defines.h uses <csting> type includes
