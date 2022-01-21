@@ -1,4 +1,4 @@
-# esrtool v0.25.2
+# esrtool v0.25.3
 
 **This is tool is archived. Try this tool instead [esrtool_rs](https://github.com/ali-raheem/esrtool_rs/)**
 

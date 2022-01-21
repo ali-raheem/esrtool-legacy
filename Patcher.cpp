@@ -223,7 +223,8 @@ int CPatcher::doUnPatch(char* filename)
 
 
 	fseek(iso, 128 * LBA_SIZE, SEEK_SET);
-	fwrite(buffer, LBA_SIZE, 12, iso);
+	for(int i = 0; i < 12; i++)
+	  fwrite(buffer, LBA_SIZE, 1, iso);
 
 	fclose(iso);
 
