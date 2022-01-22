@@ -48,6 +48,8 @@ For the static binaries
 $ make static
 ```
 
+For windows rename esrtool.c esrtool.cpp and use Visual Studio C++.
+
 ### Todo
 
 * Option to not patch in place
