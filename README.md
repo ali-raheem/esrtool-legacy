@@ -16,7 +16,8 @@ Statically linked stripped binary in /bin/
 
 Functionally tested on:
 
-* Windows 10 WSL
+* Windows 10
+* Windows 10 WSL (should be linux compatible)
 
 ### Installation
 
